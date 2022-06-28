@@ -1,40 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 public class CharacterDisplayManager : MonoBehaviour
 {
-    public enum CardinalDirections
-    {
-        North,
-        South,
-        West,
-        East
-    }
-
     [SerializeField] private Animator animator;
+    
+    private static readonly CardinalDirectionMap<int> animatorHashes = new(
+        Animator.StringToHash("Walk_North"),
+        Animator.StringToHash("Walk_South"),
+        Animator.StringToHash("Walk_East"),
+        Animator.StringToHash("Walk_West")
+    );
 
-    public void ChangeDirections(CardinalDirections direction)
+    
+    public void ChangeDirections(CardinalDirection direction)
     {
-        switch (direction)
-        {
-            case CardinalDirections.North:
-                animator.SetTrigger("Walk_North");
-                break;
-            case CardinalDirections.South:
-                animator.SetTrigger("Walk_South");
-                break;
-            case CardinalDirections.East:
-                animator.SetTrigger("Walk_East");
-                break;
-            case CardinalDirections.West:
-                animator.SetTrigger("Walk_West");
-                break;
-            default:
-                Debug.LogWarning("Invalid Cardinal Direction Enum");
-                break;
-        }
+        animator.SetTrigger(animatorHashes[direction]);
     }
-
-
 }

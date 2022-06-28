@@ -82,5 +82,11 @@ namespace GameLayout
         {
             return CalculateRegularDecompositionIntervalMidpoints(lowerLeft.y, upperRight.y, dimensions.rows);
         }
+
+        public Vector2 GetNearestGridCenter(Vector2 point)
+        {
+            return new Vector2(RoundingUtils.RoundToNearest(point.x, GetColumnCenters()),
+                RoundingUtils.RoundToNearest(point.y, GetRowCenters()));
+        }
     }
 }

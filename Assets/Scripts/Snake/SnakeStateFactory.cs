@@ -1,14 +1,17 @@
+using UnityEngine;
+
 namespace Snake
 {
-    public class SnakeStateFactory
+    public class SnakeStateFactory : MonoBehaviour
     {
         private SnakeRoot _snakeRoot;
 
-        public SnakeStateFactory(SnakeRoot snakeRoot)
+
+        public void Awake()
         {
-            _snakeRoot = snakeRoot;
+            _snakeRoot = GetComponent<SnakeRoot>();
         }
 
-        public SnakePlayState MakePlayState() => new SnakePlayState();
+        public SnakePlayState MakePlayState() => new(_snakeRoot);
     }
 }

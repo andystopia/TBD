@@ -16,7 +16,7 @@ public class CharacterDisplayManager : MonoBehaviour
     );
 
     
-    public void ChangeDirections(CardinalDirection direction)
+    public void ChangeDirection(CardinalDirection direction)
     {
         animator.SetTrigger(animatorHashes[direction]);
     }
